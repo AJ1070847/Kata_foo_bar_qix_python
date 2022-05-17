@@ -1,72 +1,71 @@
+from unittest import result
+
+
 Rules = "Rules : \n If the number is divisible by 3, write “Foo” instead of the number,\n If the number is divisible by 5, add “Bar”,\n If the number is divisible by 7, add “Qix” For each digit 3, 5, 7, add “Foo”, “Bar”, “Qix” in the digits order."
 
 
-def foobar_verifer_divisble(exemple):
-    resultat =""
+def foobar_get_value_divisible(example):
+    result =""
 
-    if int(exemple) % 3 == 0:
-        resultat= resultat + "Foo"
-    if int(exemple) % 5 == 0 :
-        resultat=resultat+"Bar"
-    if int(exemple) % 7 == 0 :
-        resultat=resultat+ "Qix"
-    return resultat
+    if int(example) % 3 == 0:
+        result= result + "Foo"
+    if int(example) % 5 == 0 :
+        result=result+"Bar"
+    if int(example) % 7 == 0 :
+        result=result+ "Qix"
+    return result
 
 
 
-def foobar_verifier_changement(exemple):
-    boole=False
-    if foobar_verifer_divisble(exemple)!="" :
-        boole = True
-    decouper_nombre = [int(a) for a in str(exemple)]
-    for a in decouper_nombre :
-        if (a == 3) or (a == 5) or (a == 7) :
-            boole= True
-   
-    return boole
+def foobar_verify_is_foobar(example):
+    
+    if foobar_get_value_divisible(example)!="" :
+        return True
+    return ("3" in str(example) or "5" in str(example) or "7" in str(example))
 
 
     
-def foo_bar_verifier_presence(exemple) :
+def foo_bar_get_value_contains(example) :
     
-    decouper_nombre = [int(a) for a in str(exemple)]
-    resultat_2=""
-    for a in decouper_nombre :
+    split_example = [int(a) for a in str(example)]
+    result=""
+    for a in split_example :
         
         if a == 3: 
             a= "Foo"
-            resultat_2=resultat_2 + str(a)
+            result=result + str(a)
             
 
         elif a == 5:
             a=  "Bar"
-            resultat_2=resultat_2 + str(a)
+            result=result + str(a)
             
 
         elif a == 7:
             a =  "Qix"
-            resultat_2=resultat_2 + str(a)
+            result=result + str(a)
         elif a == 0 :
             a= "*"
-            resultat_2=resultat_2 + str(a)
+            result=result + str(a)
             
-    return (resultat_2)
+    return (result)
 
 
-def foor_bar_resultat_final(exemple) :
-    resultat_final=""
-    if foobar_verifier_changement(exemple)==False:
-        decouper_nombre = [int(a) for a in str(exemple)]
-        for a in decouper_nombre :
-            if a == 0 : 
-                a =  "*"
-            resultat_final=resultat_final + str(a)
-        return resultat_final
-    else :
-        return (foobar_verifer_divisble(exemple) + foo_bar_verifier_presence(exemple) )
+def foobar_final_result_display(example) :
+    result_final=""
+    if foobar_verify_is_foobar(example):
+        return (foobar_get_value_divisible(example) + foo_bar_get_value_contains(example) )
+
+        
+    split_example = [int(a) for a in str(example)]
+    for a in split_example :
+        if a == 0 : 
+            a =  "*"
+        result_final=result_final + str(a)
+    return result_final
+    
+        
 
 
-nombre_a_tester = 13
-print (Rules)
-print (f"{nombre_a_tester} => {foor_bar_resultat_final(nombre_a_tester)}")
+
 
